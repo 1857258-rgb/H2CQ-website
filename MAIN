@@ -1,30 +1,54 @@
-import StudioEditor from '@grapesjs/studio-sdk/react';
-
-import '@grapesjs/studio-sdk/style';
-
-export default function App() {
-  return (
-    <StudioEditor
-      options={{
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ... -->
+    <script src="https://unpkg.com/@grapesjs/studio-sdk/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/tableComponent/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/listPagesComponent/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/fsLightboxComponent/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/swiperComponent/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/iconifyComponent/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/prosemirror/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/canvasFullSize/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/youtubeAssetProvider/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@grapesjs/studio-sdk-plugins@latest/dist/layoutSidebarButtons/index.umd.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@grapesjs/studio-sdk/dist/style.css"/>
+  </head>
+  <body>
+    <div id="studio-editor" style="height: 100dvh"></div>
+    <script>
+      GrapesJsStudioSDK.createStudioEditor({
+        root: '#studio-editor',
         licenseKey: 'DEMO_LOCALHOST_KEY',
-      project: {
-        type: 'web',
-        // TODO: replace with a unique id for your projects. e.g. an uuid
-        id: 'UNIQUE_PROJECT_ID'
-      },
-      identity: {
-        // TODO: replace with a unique id for your end users. e.g. an uuid
-        id: 'UNIQUE_END_USER_ID'
-      },
-      assets: {
-        storageType: 'cloud'
-      },
-      storage: {
-        type: 'cloud',
-        autosaveChanges: 100,
-        autosaveIntervalMs: 10000
-      }
-      }}
-    />
-  );
-}
+        project: {
+          type: 'web',
+          // TODO: replace with a unique id for your projects. e.g. an uuid
+          id: 'UNIQUE_PROJECT_ID'
+        },
+        identity: {
+          // TODO: replace with a unique id for your end users. e.g. an uuid
+          id: 'UNIQUE_END_USER_ID'
+        },
+        assets: {
+          storageType: 'cloud'
+        },
+        storage: {
+          type: 'cloud',
+          autosaveChanges: 100,
+          autosaveIntervalMs: 10000
+        },
+        plugins: [
+          StudioSdkPlugins_tableComponent.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/components/table */ }),
+          StudioSdkPlugins_listPagesComponent.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/components/listPages */ }),
+          StudioSdkPlugins_fsLightboxComponent.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/components/fslightbox */ }),
+          StudioSdkPlugins_swiperComponent.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/components/swiper */ }),
+          StudioSdkPlugins_iconifyComponent.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/components/iconify */ }),
+          StudioSdkPlugins_prosemirror.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/rte/prosemirror */ }),
+          StudioSdkPlugins_canvasFullSize.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/canvas/full-size */ }),
+          StudioSdkPlugins_youtubeAssetProvider.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/asset-providers/youtube-asset-provider */ }),
+          StudioSdkPlugins_layoutSidebarButtons.init({ /* Plugin options: https://app.grapesjs.com/docs-sdk/plugins/layout/sidebar-buttons */ })
+        ]
+      });
+    </script>
+  </body>
+</html>
